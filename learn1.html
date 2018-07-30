@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="vue.min.js"></script>
+
+	<title>基础语法</title>
+</head>
+<body>
+	<h2>显示数据</h2>
+	<div id="app-1">
+		{{ msg }}
+		{{gareen.name}}
+	</div>
+	<script>
+		var wellcom="欢迎来到英雄联盟！"
+		var gareen = {"name":"盖伦","hp":616};
+//通过vue.js 把数据和对应的视图关联起来
+new Vue({
+	el: '#app-1',
+	data: {
+		message: gareen,
+		msg:wellcom
+	}
+})
+</script>
+<h2>条件和循环</h2>
+<div id="app-2">
+	<span v-bind:title="message">
+		鼠标悬停此处几秒，
+		可以看到此处动态绑定的 title！
+	</span>
+</div>
+<script>
+	var app2 = new Vue({
+		el: '#app-2',
+		data: {
+			message: '页面加载于 ' + new Date().toLocaleString()
+		}
+	})
+</script>
+
+<h2>判断</h2>
+通过在控制台输入“app3=false”来改变判断结果<br/><br/>
+<div id="app-3">
+	<span v-if="seen">现在你可以看到我</span>
+</div>
+<script>
+	var app3 = new Vue({
+		el: '#app-3',
+		data: {
+			seen: true
+		}
+	})
+</script>
+
+<div id="app-4">
+	<ol>
+		<li v-for="todo in todos">
+			{{todo.text}}
+		</li>
+	</ol>
+</div>
+<script>
+	var app4 = new Vue({
+		el:"#app-4",
+		data:{
+			todos:[
+			{ text: '学习 JavaScript' },
+			{ text: '学习 Vue' },
+			{ text: '创建激动人心的代码' }
+			]
+		}
+	})
+</script>
+
+
+<h2>处理用户输入</h2>
+<div id="app-5">
+	<p>{{message}}</P>
+		<button v-on:click="reverseMessage">翻转文本</button>
+		<!-- <button v-on:click="reverseMessage">翻转 message</button> -->
+	</div>
+
+	<script>
+		var app5=new Vue({
+			el:"#app-5",
+			data:{
+				message:"HHHHHHello Vue.js!"
+			},
+			methods:{
+				reverseMessage:function(){
+					this.message = this.message.split('').reverse().join('')
+				}
+			}
+		})
+	</script>
+
+
+	<h2>组件</h2>
+	<div id="app-7">
+		<ol>
+			<todo-item
+			v-for="item in groceryList"
+			v-bind:todo="item"
+			v-bind:key="item.id"
+			></todo-item>
+		</ol>
+	</div>
+
+	<script>
+			Vue.component("todo-item",{
+				props:['todo'],
+				template:'<li>{{todo.text}}<li>'
+			})
+
+			var app7 = new Vue({
+				el: '#app-7',
+				data: {
+					groceryList: [
+					{ id: 0, text: '蔬菜' },
+					{ id: 1, text: '奶酪' },
+					{ id: 2, text: '其他人类食物' }
+					]
+				}
+			})
+	</script>
+
+
+
+
+
+	</body>
+	</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="vue.min.js"></script>
+	<style>
+		table tr td{
+			border:1px solid gray;
+		}
+		table{
+			border-collapse:collapse;
+			width:300px;
+		}
+		tr.firstLine{
+			background-color: lightGray;
+		}
+	</style>
+	<title>数据和属性</title>
+</head>
+<body>
+
+	<h2>文本</h2>
+	<span v-once>这里的值永远不会改变：{{ msg }}</span>
+	<p>使用双花括号语法：{{rawHtml}}</p>
+	<P>使用v-html指令：<span style ="color:red" v-html="rawHtml">ffff</span></P>
+
+
+	<h2>表格循环</h2>
+	<div id=app-1>
+		<table align="center">
+			<tr class ="firstLine">
+				<td>index</td>
+				<td>name</td>
+				<td>hp</td>
+			</tr>
+			<tr v-for="hero,index in heros">
+				<td>{{index+1}}</td>
+				<td>{{hero.name}}</td>
+				<td>{{hero.hp}}</td>
+			</tr>
+		</table>
+	</div>
+	<script>
+		var heros = [
+		{name:"盖伦",hp:341},
+		{name:"提莫",hp:225},
+		{name:"安妮",hp:427},
+		{name:"死歌",hp:893}
+		];
+		new Vue({
+			el:"#app-1",
+			data:heros
+		})
+	</script>
+
+
+	<h2>纯数字循环</h2>
+	<div id ="app-2">
+		<div v-for="i in 10">{{i}}</div>
+	</div>
+	<script>
+			new Vue({
+				el:"#app-2",
+			})
+	</script>
+
+
+
+
+</body>
+</html>
