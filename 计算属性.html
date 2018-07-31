@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="vue.min.js"></script>
+
+	<title>计算属性</title>
+</head>
+<body>
+
+<h2>直接使用双括号</h2>
+<style>
+table tr td{
+    border:1px solid gray;
+    padding:10px;
+      
+}
+table{
+    border-collapse:collapse;
+    width:800px;
+    table-layout:fixed;
+}
+tr.firstLine{
+    background-color: lightGray;
+}
+</style>
+   
+<div id="app-1">
+     
+    <table align="center" >
+        <tr class="firstLine">
+            <td>人民币</td>
+            <td>美元</td>
+        </tr>      
+        <tr>
+            <td align="center" colspan="2">
+            汇率： <input type="number" v-model.number="exchange" />
+            </td>
+        </tr>
+         
+        <tr>
+         
+            <td align="center">
+                ￥: <input type="number" v-model.number = "rmb"  />
+            </td>
+            <td align="center">
+                $: {{ rmb/exchange }}
+            </td>
+        </tr>
+    </table>
+   
+</div>
+
+<script>
+new Vue({
+	el:"#app-1",
+	data:{
+		exchange:6.4,
+		rmb:0
+	}
+})
+</script>
+
+
+
+<h2>使用computed方法</h2>
+<div id="app-2">
+     
+    <table align="center" >
+        <tr class="firstLine">
+            <td>人民币</td>
+            <td>美元</td>
+        </tr>      
+        <tr>
+            <td align="center" colspan="2">
+            汇率： <input type="number" v-model.number="exchange" />
+            </td>
+        </tr>
+         
+        <tr>
+         
+            <td align="center">
+                ￥: <input type="number" v-model.number = "rmb"  />
+            </td>
+            <td align="center">
+                $: {{ dollar }}
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script>
+new Vue({
+	el:"#app-2",
+	data:{
+		exchange:6.4,
+		rmb:0
+	},
+	computed:{
+		dollar:function(){
+			return this.rmb/this.exchange;
+		}
+	}
+
+
+})
+</script>
+
+
+
+<h2>使用method</h2>
+<div id="app-3">
+     
+    <table align="center" >
+        <tr class="firstLine">
+            <td>人民币</td>
+            <td>美元</td>
+        </tr>      
+        <tr>
+            <td align="center" colspan="2">
+            汇率： <input type="number" v-model.number="exchange" />
+            </td>
+        </tr>
+         
+        <tr>
+         
+            <td align="center">
+                ￥: <input type="number" v-model.number = "rmb"  />
+            </td>
+            <td align="center">
+                $: {{ getDollar() }}
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script>
+new Vue({
+	el:"#app-3",
+	data:{
+		exchange:6.4,
+		rmb:0
+	},
+	methods:{
+		getDollar:function(){
+			return this.rmb/this.exchange;
+		}
+	}
+})
+</script>
+
+<h2>computed和methods的区别</h2>
+<p>computed是有缓存的，只要rmb没有变化，dollar会直接返回以前计算出来的值，而不会再次计算。如果是复杂计算，就会节约很多时间</p>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+</body>
+</html>

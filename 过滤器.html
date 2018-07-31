@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="vue.min.js"></script>
+
+	<title>过滤器</title>
+</head>
+<body>
+ <style>
+            table tr td{
+                border:1px solid gray;
+                padding:10px;
+
+            }
+            table{
+                border-collapse:collapse;
+                width:800px;
+                table-layout:fixed;
+            }
+            tr.firstLine{
+                background-color: lightGray;
+            }
+        </style>
+    <!-- 全局过滤器 -->
+    <script>
+        Vue.filter('capitalize',function(value){
+            if(!value){
+                return '';
+            }
+            value = value.toString();
+            return value.charAt(0).toUpperCase()+value.substring(1);
+        })
+
+        Vue.filter('capitalizeLastLetter',function(value){
+            if(!value){
+                return '';
+            }
+            value = value.toString();
+            return value.substring(0,value.length-1)+ value.charAt(value.length-1).toUpperCase();
+        })
+    </script>
+
+
+
+
+        <h2>首字母大写过滤器</h2>
+       
+
+        <div id="app-1">
+            <table  >
+                <tr class="firstLine">
+                    <td>输入数据</td>
+                    <td>过滤后的结果</td>
+                </tr>      
+                <tr>
+                    <td align="center">
+                        <input v-model= "data"  />
+                    </td>
+                    <td align="center">
+                        {{ data|capitalize }}
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <script>
+            new Vue({
+                el:"#app-1",
+                data:{
+                    data:''
+                },
+            /*filters:{
+              capitalize:function(value) {
+                if (!value) return '' //如果为空，则返回空字符串
+                    value = value.toString();
+                return value.charAt(0).toUpperCase() + value.substring(1);
+            }
+        }*/
+    })
+</script>
+
+<h2>首尾字母均大写</h2>
+<div id="app-2">
+
+    <table>
+        <tr class="firstLine">
+            <td>输入数据</td>
+            <td>过滤后的结果</td>
+        </tr>      
+        <tr>
+            <td align="center">
+                <input v-model= "data2"  />
+            </td>
+            <td align="center">
+                {{ data2|capitalize|capitalizeLastLetter}}
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<script>
+   new Vue({
+    el: '#app-2',
+    data: {
+      data2:''
+  }
+  /*filters:{
+      capitalize2:function(value) {
+                if (!value) return '' //如果为空，则返回空字符串
+                    value = value.toString()
+                return value.charAt(0).toUpperCase() + value.substring(1)
+            },
+            capitalizeLastLetter2:function(value) {
+                if (!value) return '' //如果为空，则返回空字符串
+                    value = value.toString()
+                return value.substring(0,value.length-1)+ value.charAt(value.length-1).toUpperCase()
+            }
+        }*/
+    })
+</script>
+
+
+<h2>全局过滤器</h2>
+<p>通过写在Vue对象外部，f12查看源码</p>
+<div id="app-3">
+
+    <table align="center" >
+        <tr class="firstLine">
+            <td>输入数据</td>
+            <td>过滤后的结果</td>
+        </tr>      
+        <tr>
+            <td align="center">
+                <input v-model= "data3"  />
+            </td>
+            <td align="center">
+                {{ data3|capitalize|capitalizeLastLetter }}
+            </td>
+        </tr>
+    </table>
+
+</div>
+<script>
+
+
+    new Vue({
+      el: '#app-3',
+      data: {
+          data3:''
+      }
+  })
+</script>
+
+</body>
+</html>

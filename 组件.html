@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="vue.min.js"></script>
+
+	<title>组件</title>
+    <p style="background-color: yellow">组件命名不可以有大写字母</p>
+</head>
+<body>
+  <h2>自定义组件</h2>
+  <div id = "app-1">
+    <product></product>
+</div>
+<script>
+    new Vue({
+       el:"#app-1",
+       components:{
+           "product":{
+               template:'<div  >这是一个我创建的组件</div>'
+           }
+       }
+   })
+</script> 
+
+<h2>全局组件</h2>
+<div id="app-2">
+   <mydiv></mydiv>
+</div>
+<script>
+    Vue.component('mydiv', {
+     template: '<div   >myDiv全局组件</div>'
+ })
+    new Vue({
+     el:'#app-2'
+ })
+</script>
+<br/>
+
+
+<h2>加上参数</h2>
+<div id="app-3">
+    <aaaaa name="带参数的组件"></aaaaa>
+</div>
+
+<script>
+    Vue.component('aaaaa', {
+      props:['name'],
+      template: '<div>全局组件名：{{name}}</div>'
+  })
+
+    new Vue({
+      el: '#app-3'
+  })
+</script> 
+
+<h2>动态参数</h2>
+<div id="app-4">
+    组件外的值：<input v-model="outName"><br>
+    <bbbb v-bind:name="outName"></bbbb>
+</div>
+
+<script>
+    Vue.component('bbbb', {
+      props:['name'],
+      template: '<div   >全局组件名：{{name}}</div>'
+  })
+
+    new Vue({
+      el: '#app-4',
+      data:{
+        outName:'产品名称'
+    }
+})
+</script> 
+
+<h2>遍历json数组</h2>
+  <div id="app-6">
+     <dddd v-for="item in productts" v-bind:productt="item"></dddd>
+ </div> 
+ <script>
+
+
+    Vue.component('dddd', {
+      props:['productt'],
+      template: '<div v-on:click="myclick">全局组件名：{{productt.name}}  点击次数：{{productt.num}}</div>',
+      methods:{
+        myclick:function(){
+            this.productt.num++;
+        }
+    }
+})
+    new Vue({
+      el: '#app-6',
+      data:{
+        productts:[
+        {"name":"11","num":"18"},
+        {"name":"22","num":"35"},
+        {"name":"33","num":"29"}
+        ]
+
+    }
+})
+</script> 
+
+<h2>自定义事件</h2>
+<div id="app-5">
+    <cccc name="自定义事件组件" number="1"></cccc>
+
+    <script>
+        Vue.component('cccc', {
+          props:['name','number'],
+          template: '<div   v-on:click="myclick">全局组件名：{{name}}  点击次数：{{number}}</div>',
+          methods:{
+            myclick:function(){
+                this.number++;
+            }
+        }
+    })
+        new Vue({
+          el: '#app-5'
+      })
+</script> 
+
+
+
+  
+
+
+</body>
+</html>
