@@ -1,0 +1,120 @@
+
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="vue.min.js"></script>
+  <script src="fetch.min.js"></script>
+  <script src="axios.min.js"></script>
+  <title>ajax</title>
+</head>
+<body>
+  <style>
+    table tr td{
+      border:1px solid gray;
+    }
+    table{
+      border-collapse:collapse;
+      width:300px;
+    }
+    tr.firstLine{
+      background-color: lightGray;
+    }
+  </style>
+
+<h2>Ajax</h2>
+<p>
+&nbsp&nbspVue.js 并没有限制使用哪种方式进行 ajax 访问，所以可以使用如下方式
+<br>&nbsp&nbsp&nbsp&nbsp 1. 原生 ajax
+<br>&nbsp&nbsp&nbsp&nbsp 2. JQuery
+<br>&nbsp&nbsp&nbsp&nbsp 3. vue-resource
+<br>&nbsp&nbsp&nbsp&nbsp 4. fetch.js
+<br>&nbsp&nbsp&nbsp&nbsp 5. axios.js
+
+<br>&nbsp&nbsp 那么到底用哪种方式呢？
+
+<br>&nbsp&nbsp&nbsp&nbsp 1. 原生一般不在项目中直接用
+<br>&nbsp&nbsp&nbsp&nbsp 2. jquery 不如4，5方便
+<br>&nbsp&nbsp&nbsp&nbsp 3. vue-resource 已经不再维护了，所以不推荐
+<br>&nbsp&nbsp&nbsp&nbsp 4. fetch.js 是 vue.js 官方推荐
+<br>&nbsp&nbsp&nbsp&nbsp 5. axios.js 是vue.js 官方推荐</p>
+
+  <h2>fetch方式</h2>
+  <div id="app-1">
+    <table align="center" >
+      <tr class="firstLine">
+        <td>name</td>
+        <td>hp</td>
+      </tr>
+
+      <tr v-for="hero in heros">
+        <td>{{hero.name}}</td>
+        <td>{{hero.hp}}</td>
+      </tr>
+
+    </table>
+  </div>
+
+  <script>
+
+   var url = "http://how2j.cn/study/jsons.txt"
+
+   new Vue({
+    el:"#app-1",
+    data:{
+      heros:[]
+    },
+      mounted:function(){//mounted标识这个Vue对象加载成功了
+        self = this;
+        fetch(url).then(function(response) {
+          response.json().then(function (jsonObject) {
+            var jsonString = JSON.stringify(jsonObject)
+            self.heros=jsonObject;
+          })
+        }).catch(function(err){
+          console.log("Fetch错误:"+err);
+        })
+      }
+    })
+
+  </script>
+
+
+  <h2>axios方式</h2>
+  <div id="app-2">
+    <table align="center" >
+      <tr class="firstLine">
+        <td>name</td>
+        <td>hp</td>
+      </tr>
+
+      <tr v-for="hero in heros">
+        <td>{{hero.name}}</td>
+        <td>{{hero.hp}}</td>
+      </tr>
+
+    </table>
+  </div>
+
+  <script>
+
+
+    new Vue({
+      el:"#app-2",
+      data:{
+        heros:[]
+      },
+      mounted:function(){
+        var self = this;
+        axios.get(url).then(function(response){
+      self.heros=response.data;//此时还是字符串
+      self.heros=eval("("+self.heros+")");//字符串转化为数组对象
+    }).catch(function(err){
+      console.log("Axios错误："+err);
+    })
+  }
+})
+
+</script>
+
+</body>
+</html>

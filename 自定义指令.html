@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="vue.min.js"></script>
+
+	<title>自定义指令</title>
+</head>
+<body>
+
+	<h2>简单例子</h2>
+	<div id="app-1" v-xart>这一条是自定义指令的div</div> <br>
+	<script>
+		Vue.directive('xart',function(el){
+			el.innerHTML=el.innerHTML+'("(自定义指令带的后缀)")',
+			el.style.color='pink',
+			el.style.backgroundColor='yellow'
+		})
+		new Vue({
+			el:"#app-1"
+		})
+	</script>
+
+	<h2>带参数的自定义指令</h2>
+	<div id="app-2" v-xart2="{color:'red',text:'best learning video'}">带参数的自定义指令</div>
+
+	<script>
+		Vue.directive('xart2',function(el,binding){
+			el.innerHTML=el.innerHTML+'('+binding.value.text+')';
+			el.style.color=binding.value.color;
+		})
+		new Vue({
+			el:"#app-2"
+		})
+
+	</script>
+
+	<h2>回调</h2>
+	<p>几种回调函数:<br>
+		&nbsp bind：只调用一次，指令第一次绑定到元素时调用。在这里可以进行一次性的初始化设置。
+		<br>&nbsp update：所在组件的 VNode 更新时调用，但是可能发生在其子 VNode 更新之前。指令的值可能发生了改变，也可能没有。但是你可以通过比较更新前后的值来忽略不必要的模板更新 (详细的钩子函数参数见下)。
+		<br>&nbsp unbind：只调用一次，指令与元素解绑时调用
+
+		以bind为例，可以传递主要是用到binding里的属性
+		<br>&nbsp name：指令名，不包括 v- 前缀。仅在 update 和 componentUpdated 钩子中可用。无论值是否改变都可用。
+		<br>&nbsp expression：字符串形式的指令表达式。本例就是 message
+		arg：传给指令的参数，本例就是hello
+		<br>&nbsp modifiers：一个包含修饰符的对象。本例就是 .a .b
+		这样拿到这些自定义指令的各项参数，那么在函数体里就方便做各种自定义功能了</p>
+<br>&nbsp&nbsp&nbsp&nbsp&nbsp下面是一些回调的结果，请查看源码查看各回调函数
+		<div id="app-3">
+
+			<div v-xart:hello.a.b="message"> </div>
+
+		</div>
+
+		<script>
+			Vue.directive('xart', {
+				bind: function (el, binding, vnode) {
+					var s = JSON.stringify
+					el.innerHTML =
+					'name: '       + s(binding.name) + '<br>' +
+					'value: '      + s(binding.value) + '<br>' +
+					'expression: ' + s(binding.expression) + '<br>' +
+					'argument: '   + s(binding.arg) + '<br>' +
+					'modifiers: '  + s(binding.modifiers) + '<br>' +
+					'vnode keys: ' + Object.keys(vnode).join(', ')
+				},
+
+				update: function (newValue, oldValue) {
+	   			 // 值更新时的工作
+	   			 // 也会以初始值为参数调用一次
+				},
+				unbind: function () {
+	    			// 清理工作
+	    			// 例如，删除 bind() 添加的事件监听器
+				}
+			})
+
+			new Vue({
+				el: '#app-3',
+				data:{
+					message:'hello vue.js'
+				}
+			})
+		</script>
+
+
+	</body>
+	</html>

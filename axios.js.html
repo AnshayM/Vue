@@ -1,0 +1,28 @@
+
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="vue.min.js"></script>
+  <script src="axios.min.js"></script>
+  <title>axios.js</title>
+</head>
+<body>
+
+ <div id="app"></div>
+
+ <script>
+
+  var url = "http://how2j.cn/study/jsons.txt"
+  axios.get(url).then(function(response) {
+    var jsonObject = response.data;
+    var jsonString = JSON.stringify(jsonObject)
+    document.getElementById("app").innerHTML = "通过 axios 获取到的json数据："+ jsonString;
+  }).catch(function(err){
+    console.log("Fetch错误:"+err);
+  })
+
+
+</script>
+
+</body>
+</html>
