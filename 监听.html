@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<script type="text/javascript" src="vue.min.js"></script>
+	<script type="text/javascript" src="js/vue.min.js"></script>
 
 	<title>监听</title>
 </head>
@@ -13,7 +13,7 @@
 table tr td{
     border:1px solid gray;
     padding:10px;
-      
+
 }
 table{
     border-collapse:collapse;
@@ -24,22 +24,22 @@ tr.firstLine{
     background-color: lightGray;
 }
 </style>
-   
+
 <div id="app-1">
-     
+
     <table align="center" >
         <tr class="firstLine">
             <td>人民币</td>
             <td>美元</td>
-        </tr>      
+        </tr>
         <tr>
             <td align="center" colspan="2">
             汇率： <input type="number" v-model.number="exchange" />
             </td>
         </tr>
-         
+
         <tr>
-         
+
             <td align="center">
                 ￥: <input type="number" v-model.number = "rmb"  />
             </td>
@@ -48,7 +48,7 @@ tr.firstLine{
             </td>
         </tr>
     </table>
-   
+
 </div>
 
 <script>

@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<script type="text/javascript" src="vue.min.js"></script>
+	<script type="text/javascript" src="js/vue.min.js"></script>
 
 	<title>双向绑定</title>
 </head>
@@ -73,7 +73,7 @@
 				<td>视图类型</td>
 				<td>输入数据</td>
 				<td>绑定到Vue上的数值</td>
-			</tr>       
+			</tr>
 			<tr>
 				<td>
 					单行文本
@@ -82,7 +82,7 @@
 					<input v-model="input" placeholder="输入数据">
 				</td>
 				<td>
-					<p>{{ input }}</p>   
+					<p>{{ input }}</p>
 				</td>
 			</tr>
 			<tr>
@@ -93,7 +93,7 @@
 					<textarea v-model="textarea" placeholder="输入数据"></textarea>
 				</td>
 				<td>
-					<p>{{ textarea }}</p>   
+					<p>{{ textarea }}</p>
 				</td>
 			</tr>
 			<tr>
@@ -104,7 +104,7 @@
 					<input type="checkbox" id="checkbox" v-model="checked">
 				</td>
 				<td>
-					<p>{{ checked }}</p>   
+					<p>{{ checked }}</p>
 				</td>
 			</tr>
 			<tr>
@@ -120,7 +120,7 @@
 					<label for="annie">annie</label>
 				</td>
 				<td>
-					<p>{{ checkedes }}</p>   
+					<p>{{ checkedes }}</p>
 				</td>
 			</tr>
 			<tr>
@@ -135,7 +135,7 @@
 					<label for="two">Two</label>
 				</td>
 				<td>
-					<p>{{ radio }}</p>   
+					<p>{{ radio }}</p>
 				</td>
 			</tr>
 			<tr>
@@ -151,7 +151,7 @@
 					</select>
 				</td>
 				<td>
-					<p>{{ selected }}</p>   
+					<p>{{ selected }}</p>
 				</td>
 			</tr>
 			<tr>
@@ -168,7 +168,7 @@
 					</select>
 				</td>
 				<td>
-					<p>{{ selecteds }}</p>   
+					<p>{{ selecteds }}</p>
 				</td>
 			</tr>
 			<tr>
@@ -180,9 +180,9 @@
 					<input type="checkbox" id="toggle" true-value="yes" false-value="no" v-model="toggle">
 				</td>
 				<td>
-					<p>{{ toggle }}</p>   
+					<p>{{ toggle }}</p>
 				</td>
-			</tr>       
+			</tr>
 
 		</table>
 
@@ -212,13 +212,13 @@
 <h2>懒加载交互</h2>
 <p>在"v-model"后加“.lazy”在脱离焦点后才更新数据渲染</p>
 <div id="app-4">
-    
+
     <table align="center" >
         <tr class="firstLine">
             <td>视图类型</td>
             <td>输入数据</td>
             <td>绑定到Vue上的数值</td>
-        </tr>       
+        </tr>
         <tr>
             <td>
                 单行文本1
@@ -227,7 +227,7 @@
                 <input v-model.lazy="input1" placeholder="输入数据">
             </td>
             <td>
-                <p>{{ input1 }}</p>   
+                <p>{{ input1 }}</p>
             </td>
         </tr>
         <tr>
@@ -238,7 +238,7 @@
                 <input v-model.lazy="input2" placeholder="输入数据">
             </td>
             <td>
-                <p>{{ input2 }}</p>   
+                <p>{{ input2 }}</p>
             </td>
         </tr>
     </table>
@@ -265,7 +265,7 @@ new Vue({
             <td>输入数据</td>
             <td>绑定到Vue上的数值</td>
             <td>数值类型</td>
-        </tr>      
+        </tr>
         <tr>
             <td>
                 单行文本1
@@ -274,10 +274,10 @@ new Vue({
                 <input v-model="input51" type="number" placeholder="输入数据">
             </td>
             <td>
-                <p>{{ input51 }}</p>  
+                <p>{{ input51 }}</p>
             </td>
             <td>
-                <p>{{ typeof input51 }}</p>  
+                <p>{{ typeof input51 }}</p>
             </td>
         </tr>
         <tr>
@@ -288,27 +288,27 @@ new Vue({
                 <input v-model.number="input52"   type="number"  placeholder="输入数据">
             </td>
             <td>
-                <p>{{ input52 }}</p>  
+                <p>{{ input52 }}</p>
             </td>
             <td>
-                <p>{{ typeof input52 }}</p>  
+                <p>{{ typeof input52 }}</p>
             </td>
         </tr>
     </table>
-   
+
 </div>
-      
+
 <script>
-    
+
 new Vue({
       el: "#app-5",
       data: {
           input51:'',
           input52:''
-            
+
       }
     })
-      
+
 </script>
 
 
@@ -317,13 +317,13 @@ new Vue({
 <h2>修饰符.trm</h2>
 
 <div id="app-6">
-     
+
     <table align="center" >
         <tr class="firstLine">
             <td>视图类型</td>
             <td>输入数据</td>
             <td>绑定到Vue上的数值</td>
-        </tr>      
+        </tr>
         <tr>
             <td>
                 单行文本
@@ -332,24 +332,24 @@ new Vue({
                 <input v-model.trim="input6" placeholder="输入数据">
             </td>
             <td>
-                <p>"{{ input6 }}"</p>  
+                <p>"{{ input6 }}"</p>
             </td>
         </tr>
     </table>
-   
+
 </div>
-      
+
 <script>
-    
+
 new Vue({
       el: '#app-6',
       data: {
           input6:'',
           input62:''
-            
+
       }
     })
-      
+
 </script>
 
 

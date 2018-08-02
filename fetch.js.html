@@ -2,8 +2,8 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<script type="text/javascript" src="vue.min.js"></script>
-    <script src="fetch.min.js"></script>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+    <script src="js/fetch.min.js"></script>
     <title>fetch.js</title>
 </head>
 <body>
@@ -11,7 +11,7 @@
    <div id="app"></div>
 
    <script>
-   
+
        var url = "http://how2j.cn/study/json.txt"
        fetch(url).then(function(response) {
         response.json().then(function (jsonObject) {
