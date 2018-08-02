@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="vue.min.js"></script>
+
+	<title>数据和方法</title>
+</head>
+<body>
+
+	<h2>data和methods</h2>
+	<div id="app">
+		<p>{{foo}}</p>
+		<button v-on:click.once="foo+='s'">点击修改</button>
+		<button v-on:click="foo='bazzzzz'">点击修改</button>
+	</div>
+	<script>
+		var obj = {
+			foo:'bar'
+		}
+		//Object.freeze(obj);
+		new Vue({
+			el:"#app",
+			data:obj
+		})
+	</script>
+
+
+	<h2>周期函数</h2>
+会在实例创建后调用created函数(弹框)</br>
+除了created，还有mounted、updated、destroyed
+<div id="app2"></div>
+
+<script>
+	new Vue({
+		data:{
+			a:1
+		},created:function(){
+			alert("ddd");
+			console.log('a is:'+this.a)
+
+		}
+	})
+</script>
+
+</body></html>
