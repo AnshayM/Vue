@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<h2>data和methods</h2>
+	<h2>data和methods</h2>
 	<div id="app">
 		<p>{{foo}}</p>
 		<button v-on:click.once="foo+='s'">点击修改</button>
@@ -26,22 +26,21 @@
 	</script>
 
 
-<h2>周期函数</h2>
+	<h2>周期函数</h2>
 会在实例创建后调用created函数(弹框)</br>
 除了created，还有mounted、updated、destroyed
 <div id="app2"></div>
 
 <script>
-new Vue({
-	data:{
-		a:1
-	},created:function(){
-		alert("ddd");
-		console.log('a is:'+this.a)
+	new Vue({
+		data:{
+			a:1
+		},created:function(){
+			alert("ddd");
+			console.log('a is:'+this.a)
 
-	}
+		}
 	})
 </script>
 
-</body>
-</html>
+</body></html>
